@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = User.last
   end
 
+  def show
+    @user=User.find(params[:id])
+  end
+
   def new
     @user = User.new
   end
@@ -11,7 +15,8 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
 
     if @user.save
-       redirect_to action: :index
+      redirect_to action: :index
+      # redirect_to(@user)
       # redirect_to  users_path
     else
       render :new
